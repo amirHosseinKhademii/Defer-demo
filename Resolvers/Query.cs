@@ -1,10 +1,10 @@
+
 using Graph_Demo.Models;
 using Graph_Demo.Repositories;
 
-namespace Graph_Demo
+namespace Graph_Demo.Resolvers
 {
     public class Query
-
     {
         private readonly IBooksRepository repository;
 
@@ -12,9 +12,16 @@ namespace Graph_Demo
         {
             this.repository = repository;
         }
+
         public async Task<IEnumerable<Book>> GetBooksAsync() => await repository.GetBooksAsync();
+
 
         public async Task<Book> GetBookAsync(Guid id) => await repository.GetBookAsync(id);
     }
-
 }
+
+
+
+
+
+

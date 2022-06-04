@@ -27,8 +27,7 @@ namespace Graph_Demo.Repositories
             return await booksCollection.Find(filter).SingleOrDefaultAsync();
         }
 
-
-        public async Task AddBookAsync(Book book)
+        public async Task CreateBookAsync(Book book)
         {
             await booksCollection.InsertOneAsync(book);
         }

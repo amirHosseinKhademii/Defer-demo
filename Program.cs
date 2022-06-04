@@ -1,5 +1,6 @@
 using Graph_Demo;
 using Graph_Demo.Repositories;
+using Graph_Demo.Resolvers;
 using Graph_Demo.Settings;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using MongoDB.Bson;
@@ -15,14 +16,17 @@ var mdbSettings = builder.Configuration.GetSection(nameof(MongoDbSettings)).Get<
 BsonSerializer.RegisterSerializer(new GuidSerializer(BsonType.String));
 BsonSerializer.RegisterSerializer(new DateTimeOffsetSerializer(BsonType.String));
 
-builder.Services.AddSingleton<IMongoClient>(ServiceProvider => new MongoClient(mdbSettings.ConnectionString));
-builder.Services.AddSingleton<IBooksRepository, MDBBooksRepo>();
-
 builder.Services
-    .AddGraphQLServer()
-    .AddQueryType<Query>();
+    .AddSingleton<IMongoClient>(ServiceProvider => new MongoClient(mdbSettings.ConnectionString))
+    .AddSingleton<IBooksRepository, MDBBooksRepo>().AddGraphQLServer()
+    .AddDocumentFromFile("./Schema.graphql")
+    .AddResolver<Query>()
+    .AddResolver<Mutation>();
+
+
 builder.Services.AddHealthChecks().AddMongoDb(mdbSettings.ConnectionString,
  name: "MongoDB", timeout: TimeSpan.FromSeconds(3), tags: new[] { "Ready" });
+
 var app = builder.Build();
 
 app.MapGraphQL();
