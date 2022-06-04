@@ -1,6 +1,6 @@
 namespace Graph_Demo.Models
 {
-    public record Book
+    public sealed record Book
     {
         public Guid Id { get; init; }
         public string Title { get; init; }
@@ -8,7 +8,7 @@ namespace Graph_Demo.Models
         public Author Author { get; init; }
     }
 
-    public record Author
+    public sealed record Author
     {
         public string Name { get; init; }
     }

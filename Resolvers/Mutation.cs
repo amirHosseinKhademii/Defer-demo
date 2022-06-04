@@ -21,6 +21,12 @@ namespace Graph_Demo.Resolvers
             return true;
         }
 
+        public async Task<Boolean> UpdateBookAsync(Guid id, string title)
+        {
+            await repository.UpdateBookAsync(id, title);
+            return true;
+        }
+
         public async Task<Boolean> DeleteBookAsync(Guid id)
         {
             await repository.DeleteBookAsync(id);

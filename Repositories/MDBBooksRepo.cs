@@ -32,14 +32,17 @@ namespace Graph_Demo.Repositories
             await booksCollection.InsertOneAsync(book);
         }
 
-        public void UpdateBook(Book book)
+        public async Task UpdateBookAsync(Guid Id, string title)
         {
-            throw new NotImplementedException();
+            var filter = filterBuilder.Eq(item => item.Id, Id);
+            var update = Builders<Book>.Update.Set(item => item.Title, title);
+            await booksCollection.UpdateOneAsync(filter, update);
         }
 
         public async Task DeleteBookAsync(Guid Id)
         {
-            await booksCollection.DeleteOneAsync(filterBuilder.Eq(item => item.Id, Id));
+            var filter = filterBuilder.Eq(item => item.Id, Id);
+            await booksCollection.DeleteOneAsync(filter);
         }
 
     }
