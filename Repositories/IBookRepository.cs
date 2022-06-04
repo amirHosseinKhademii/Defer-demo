@@ -5,7 +5,7 @@ namespace Graph_Demo.Repositories
     public interface IBooksRepository
     {
         Book GetBook(Guid id);
-        IEnumerable<Book> GetBooks();
+        Task<IEnumerable<Book>> GetBooksAsync();
 
         void AddBook(Book book);
 

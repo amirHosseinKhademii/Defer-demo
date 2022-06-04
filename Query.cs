@@ -12,7 +12,7 @@ namespace Graph_Demo
         {
             this.repository = repository;
         }
-        public IEnumerable<Book> GetBooks() => repository.GetBooks();
+        public async Task<IEnumerable<Book>> GetBooksAsync() => await repository.GetBooksAsync();
 
         public Book GetBook(Guid id) => repository.GetBook(id);
     }
