@@ -37,9 +37,9 @@ namespace Graph_Demo.Repositories
             throw new NotImplementedException();
         }
 
-        public void DeleteBook(Book book)
+        public async Task DeleteBookAsync(Guid Id)
         {
-            throw new NotImplementedException();
+            await booksCollection.DeleteOneAsync(filterBuilder.Eq(item => item.Id, Id));
         }
 
     }

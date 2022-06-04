@@ -19,7 +19,12 @@ namespace Graph_Demo.Resolvers
             };
             await repository.CreateBookAsync(book);
             return true;
+        }
 
+        public async Task<Boolean> DeleteBookAsync(Guid id)
+        {
+            await repository.DeleteBookAsync(id);
+            return true;
         }
     }
 }

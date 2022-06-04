@@ -11,7 +11,7 @@ namespace Graph_Demo.Repositories
 
         void UpdateBook(Book book);
 
-        void DeleteBook(Book book);
+        Task DeleteBookAsync(Guid Id);
 
 
     }
