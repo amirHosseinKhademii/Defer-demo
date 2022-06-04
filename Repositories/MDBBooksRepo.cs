@@ -17,35 +17,20 @@ namespace Graph_Demo.Repositories
             IMongoDatabase database = client.GetDatabase(databaseName);
             booksCollection = database.GetCollection<Book>(collectionName);
         }
-        private readonly List<Book> books = new()
-        {
-            new Book
-                {
-                    Id = Guid.NewGuid(),
-                    Title = "C# in depth.",
-                    Author = new Author
-                    {
-                        Name = "Jon Skeet"
-                    }
-                },
-             new Book
-                {
-                    Id = Guid.NewGuid(),
-                    Title = "C# in hotchocolate.",
-                    Author = new Author
-                    {
-                        Name = "Amir hossein"
-                    }
-                }
-        };
+
 
         public async Task<IEnumerable<Book>> GetBooksAsync() => await booksCollection.Find(new BsonDocument()).ToListAsync();
 
-        public Book GetBook(Guid id) => books.Where(b => b.Id == id).SingleOrDefault();
-
-        public void AddBook(Book book)
+        public async Task<Book> GetBookAsync(Guid Id)
         {
-            books.Add(book);
+            var filter = filterBuilder.Eq(item => item.Id, Id);
+            return await booksCollection.Find(filter).SingleOrDefaultAsync();
+        }
+
+
+        public async Task AddBookAsync(Book book)
+        {
+            await booksCollection.InsertOneAsync(book);
         }
 
         public void UpdateBook(Book book)

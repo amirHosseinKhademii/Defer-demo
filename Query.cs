@@ -14,7 +14,7 @@ namespace Graph_Demo
         }
         public async Task<IEnumerable<Book>> GetBooksAsync() => await repository.GetBooksAsync();
 
-        public Book GetBook(Guid id) => repository.GetBook(id);
+        public async Task<Book> GetBookAsync(Guid id) => await repository.GetBookAsync(id);
     }
 
 }
