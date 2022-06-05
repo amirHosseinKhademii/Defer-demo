@@ -13,13 +13,9 @@ namespace Graph_Demo.Resolvers
             this.repository = repository;
         }
 
-        public async Task<Boolean> CreateBookAsync(string title)
+        public async Task<Boolean> CreateBookAsync(string title, string author)
         {
-            Book book = new()
-            {
-                Title = title
-            };
-            await repository.CreateBookAsync(book);
+            await repository.CreateBookAsync(title, author);
             return true;
         }
 

@@ -8,7 +8,7 @@ namespace Graph_Demo.Repositories
 
         Task<IEnumerable<Book>> GetBooksAsync();
 
-        Task CreateBookAsync(Book book);
+        Task CreateBookAsync(string title, string author);
 
         Task UpdateBookAsync(Guid Id, string title, string author);
 
