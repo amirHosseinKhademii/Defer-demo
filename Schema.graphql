@@ -1,6 +1,7 @@
 type Query {
   books: [Book!]
   book(id: ID!): Book
+  cards: [Card!]
 }
 
 type Mutation {
@@ -17,4 +18,28 @@ type Book {
 
 type Author {
   name: String
+}
+
+type Card {
+  id: ID
+  header: Header
+  body: Body
+}
+
+type Header {
+  title: String
+  followers: Int
+  image: String
+}
+
+type Body {
+  description: String
+  todos: [Todo]
+}
+
+type Todo {
+  id: ID
+  title: String
+  description: String
+  completed: Boolean
 }

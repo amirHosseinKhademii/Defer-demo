@@ -4,7 +4,7 @@ using MongoDB.Driver;
 
 namespace Graph_Demo.Repositories
 {
-    public record MDBCardsRepo
+    public record MDBCardsRepo : ICardRepository
     {
         private const string databaseName = "graph-demo";
         private const string collectionName = "cards";

@@ -3,11 +3,12 @@ using Graph_Demo.Repositories;
 
 namespace Graph_Demo.Resolvers
 {
-    public class Mutation
+    [ExtendObjectType(Name = "Mutation")]
+    public class BookMutation
     {
         private readonly IBooksRepository repository;
 
-        public Mutation(IBooksRepository repository)
+        public BookMutation(IBooksRepository repository)
         {
             this.repository = repository;
         }

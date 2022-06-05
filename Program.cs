@@ -18,11 +18,16 @@ BsonSerializer.RegisterSerializer(new DateTimeOffsetSerializer(BsonType.String))
 
 builder.Services
     .AddSingleton<IMongoClient>(ServiceProvider => new MongoClient(mdbSettings.ConnectionString))
-    .AddSingleton<IBooksRepository, MDBBooksRepo>().AddGraphQLServer()
-    .AddDocumentFromFile("./Schema.graphql")
-    .AddResolver<Query>()
-    .AddResolver<Mutation>();
-
+    .AddSingleton<IBooksRepository, MDBBooksRepo>()
+    .AddSingleton<ICardRepository, MDBCardsRepo>()
+    .AddGraphQLServer()
+    // .AddDocumentFromFile("./Schema.graphql")
+    .AddQueryType(d => d.Name("Query"))
+    .AddMutationType(d => d.Name("Mutation"))
+    .AddType<BookQuery>()
+    .AddType<QueryCard>()
+    .AddType<BookMutation>()
+    ;
 
 builder.Services.AddHealthChecks().AddMongoDb(mdbSettings.ConnectionString,
  name: "MongoDB", timeout: TimeSpan.FromSeconds(3), tags: new[] { "Ready" });

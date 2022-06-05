@@ -1,15 +1,17 @@
 
 using Graph_Demo.Models;
 using Graph_Demo.Repositories;
+using MongoDB.Bson;
+using MongoDB.Driver;
 
 namespace Graph_Demo.Resolvers
 {
-    public class Query
+    [ExtendObjectType(Name = "Query")]
+    public class BookQuery
     {
         private readonly IBooksRepository bookRepository;
-        private readonly ICardRepository cardRepository;
 
-        public Query(IBooksRepository bookRepository)
+        public BookQuery(IBooksRepository bookRepository)
         {
             this.bookRepository = bookRepository;
         }

@@ -4,9 +4,9 @@ namespace Graph_Demo.Models
     {
         public Guid Id { get; init; }
 
-        public Header Header { get; init; }
+        // public Header Header { get; init; }
 
-        public Body Body { get; init; }
+        // public Body Body { get; init; }
 
     }
 
