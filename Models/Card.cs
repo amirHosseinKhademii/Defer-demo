@@ -14,7 +14,7 @@ namespace Graph_Demo.Models
     {
         public string? Title { get; init; }
 
-        public int Followers { get; init; }
+        public int? Followers { get; init; }
 
         public string? Image { get; init; }
 
