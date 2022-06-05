@@ -6,17 +6,20 @@ namespace Graph_Demo.Resolvers
 {
     public class Query
     {
-        private readonly IBooksRepository repository;
+        private readonly IBooksRepository bookRepository;
+        private readonly ICardRepository cardRepository;
 
-        public Query(IBooksRepository repository)
+        public Query(IBooksRepository bookRepository)
         {
-            this.repository = repository;
+            this.bookRepository = bookRepository;
         }
 
-        public async Task<IEnumerable<Book>> GetBooksAsync() => await repository.GetBooksAsync();
+        public async Task<IEnumerable<Book>> GetBooksAsync() => await bookRepository.GetBooksAsync();
 
 
-        public async Task<Book> GetBookAsync(Guid id) => await repository.GetBookAsync(id);
+        public async Task<Book> GetBookAsync(Guid id) => await bookRepository.GetBookAsync(id);
+
+
     }
 }
 

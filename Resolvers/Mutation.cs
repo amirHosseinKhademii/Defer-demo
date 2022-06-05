@@ -11,6 +11,7 @@ namespace Graph_Demo.Resolvers
         {
             this.repository = repository;
         }
+
         public async Task<Boolean> CreateBookAsync(string title)
         {
             Book book = new()

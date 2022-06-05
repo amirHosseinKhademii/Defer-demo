@@ -18,7 +18,6 @@ namespace Graph_Demo.Repositories
             booksCollection = database.GetCollection<Book>(collectionName);
         }
 
-
         public async Task<IEnumerable<Book>> GetBooksAsync() => await booksCollection.Find(new BsonDocument()).ToListAsync();
 
         public async Task<Book> GetBookAsync(Guid Id)
