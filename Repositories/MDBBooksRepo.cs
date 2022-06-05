@@ -32,10 +32,11 @@ namespace Graph_Demo.Repositories
             await booksCollection.InsertOneAsync(book);
         }
 
-        public async Task UpdateBookAsync(Guid Id, string title)
+        public async Task UpdateBookAsync(Guid Id, string title, string author)
         {
+            Author author1 = new() { Name = author };
             var filter = filterBuilder.Eq(item => item.Id, Id);
-            var update = Builders<Book>.Update.Set(item => item.Title, title);
+            var update = Builders<Book>.Update.Set(item => item.Title, title).Set(item => item.Author, author1);
             await booksCollection.UpdateOneAsync(filter, update);
         }
 

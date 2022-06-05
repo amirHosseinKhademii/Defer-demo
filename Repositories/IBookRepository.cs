@@ -10,7 +10,7 @@ namespace Graph_Demo.Repositories
 
         Task CreateBookAsync(Book book);
 
-        Task UpdateBookAsync(Guid Id, string title);
+        Task UpdateBookAsync(Guid Id, string title, string author);
 
         Task DeleteBookAsync(Guid Id);
 
