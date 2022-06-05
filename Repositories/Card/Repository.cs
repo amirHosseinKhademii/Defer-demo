@@ -17,5 +17,25 @@ namespace Graph_Demo.Repositories
         }
 
         public async Task<IEnumerable<Card>> GetCardsAsync() => await cardsCollection.Find(new BsonDocument()).ToListAsync();
+
+        public Task<Card> GetCardAsync(Guid id)
+        {
+            throw new NotImplementedException();
+        }
+        public async Task CreateCardAsync(string title)
+        {
+            Header header = new Header
+            {
+                Title = title
+            };
+            Card newCard = new()
+            {
+                Header = header
+            };
+            await cardsCollection.InsertOneAsync(newCard);
+        }
+
+
+
     }
 }

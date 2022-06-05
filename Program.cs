@@ -27,6 +27,7 @@ builder.Services
     .AddType<BookQuery>()
     .AddType<QueryCard>()
     .AddType<BookMutation>()
+    .AddType<CardMutation>()
     ;
 
 builder.Services.AddHealthChecks().AddMongoDb(mdbSettings.ConnectionString,
